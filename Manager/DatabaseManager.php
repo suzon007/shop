@@ -136,12 +136,13 @@ class DatabaseManager implements IC
     }
 
     /**
-     * @param bool $p1_display_only_available
+     * @param $p1_item
+     * @param bool $p2_display_only_available
      * @return \Generator
      */
-    public function fetchTampoonInfos($p1_display_only_available = TRUE)
+    public function fetchItemInfos($p1_item, $p2_display_only_available = TRUE)
     {
-        $result = $this->sqli->query('SELECT * FROM tbl_tampoons '.(($p1_display_only_available) ? 'WHERE quantity > 0' : ''));
+        $result = $this->sqli->query('SELECT * FROM tbl_'.$p1_item.' '.(($p2_display_only_available) ? 'WHERE quantity > 0' : ''));
 
         if(is_object($result))
         {
@@ -185,7 +186,7 @@ class DatabaseManager implements IC
 
                     $queryTwo = 'INSERT INTO tbl_orders_details
                                  SET id_order = '.$insertIdQueryOne.',
-                                  id_tampoon = (SELECT id FROM tbl_tampoons WHERE tbl_tampoons.reference = "'.$tampoonRef.'"),
+                                  id_tampoon = (SELECT id FROM tbl_tampoon WHERE tbl_tampoon.reference = "'.$tampoonRef.'"),
                                   quantity = '.(int)$v;
 
                     $resultTwo = $this->sqli->query($queryTwo);
@@ -209,7 +210,7 @@ class DatabaseManager implements IC
     {
         foreach($p1_tampoon_infos as $k => $v):
 
-            $query = 'UPDATE tbl_tampoons AS tp1 INNER JOIN tbl_tampoons AS tp2 ON tp1.reference = tp2.reference AND tp1.reference ="'.$k.'" SET tp1.quantity = (tp2.quantity - '.(int)$v.')';
+            $query = 'UPDATE tbl_tampoon AS tp1 INNER JOIN tbl_tampoon AS tp2 ON tp1.reference = tp2.reference AND tp1.reference ="'.$k.'" SET tp1.quantity = (tp2.quantity - '.(int)$v.')';
 
             $result = $this->sqli->query($query);
 

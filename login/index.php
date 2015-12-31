@@ -9,7 +9,7 @@ include_once '../translations/label_'.(isset($_SESSION['locale']) ? $_SESSION['l
 
 if(isset($_SESSION['customer_email']) && !empty($_SESSION['customer_email'])) //check email only
 {
-    header('Location: ../order');
+    header('Location: ../');
 }
 
 if(isset($_GET['do']) && trim($_GET['do']) === 'logout'){ //logout
@@ -37,7 +37,7 @@ if(count($_POST) > 0)
             {
                 $_SESSION['customer_email'] = $output['email'];
                 $_SESSION['customer_id']    = $output['id'];
-                header('Location: ../order');
+                header('Location: ../');
 
             }else $errorMsg = WRONG_LOGIN_PAGE.' <a href="../firstLogin">login</a>'; //if user try to login with PSK as password in classic login page
 
