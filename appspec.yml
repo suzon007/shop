@@ -2,9 +2,9 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ubuntu/tampoon
+    destination: /home/ubuntu/shop
 permissions:
-  - object: /home/ubuntu/tampoon
+  - object: /home/ubuntu/shop
     pattern: "**"
     owner: www-data
     group: www-data
