@@ -1,7 +1,7 @@
 <?php namespace resetPassword;
 session_start();
 include_once '../translations/label_'.(isset($_SESSION['locale']) ? $_SESSION['locale'] : 'fr').'.php';
-include_once '../inc/header_login.htm';
+include_once '../inc/header_login.php';
 ?>
 <div id="main">
 <?php
@@ -32,7 +32,7 @@ if(count($_GET) > 0)
     ?>
     <div id="recover_passwd_content">
         <h3><?php echo FORGOTTEN_PASSWD ?></h3>
-        <form name="recover_passwd" id="recover_passwd">
+        <form name="recover_passwd" id="recover_passwd" method="post">
             <input type="email" name="email_rescue" id="email_rescue" placeholder="Email" autofocus />
         </form>
         <br>

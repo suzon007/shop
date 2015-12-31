@@ -46,7 +46,7 @@ if(count($_POST) > 0)
     }else $errorMsg = INPUTS_MANDATORIES;
 }
 
-include_once '../inc/header_login.htm';
+include_once '../inc/header_login.php';
 ?>
 <div id="main">
     <h1><?php echo CONNECTION ?></h1>

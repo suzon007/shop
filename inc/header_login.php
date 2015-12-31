@@ -2,7 +2,7 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>Tampoon</title>
+    <title><?php echo RESET_PASSWORD ?></title>
     <link rel="icon" href="../img/favicon.ico" />
     <meta name="description" content="Tampoon" />
     <link rel="stylesheet" type="text/css" href="../css/login.css"/>
