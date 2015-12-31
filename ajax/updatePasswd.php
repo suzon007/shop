@@ -23,7 +23,7 @@ if(count($_POST) > 0)
             $_SESSION['customer_email'] = $userDatas['email'];
             $_SESSION['customer_id'] = $userDatas['id'];
 
-            echo '<a href="../order">'.CONNECTION.'</a>';
+            echo '<a href="../">'.CONNECTION.'</a>';
 
         }else $errorMsg = $userDatas;
 

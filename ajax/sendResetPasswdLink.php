@@ -30,7 +30,7 @@ if(count($_POST) > 0)
 
             require_once '../Manager/MailManager.php';
 
-            $resetLink = 'http://tampoon.net/resetPassword/?email='.$rescueEmail.'&hash='.$hash;
+            $resetLink = 'http://'.$_SERVER['HTTP_HOST'].'/resetPassword/?email='.$rescueEmail.'&hash='.$hash;
 
             $msg = '<html><body><br><a href="'.$resetLink.'">'.CLICK_TO_RESET_PASSWD.'</a>';
             $msg .= '<br>'.COPY_RESET_PASSWD_URL;
