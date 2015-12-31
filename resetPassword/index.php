@@ -1,6 +1,7 @@
 <?php namespace resetPassword;
 session_start();
 include_once '../translations/label_'.(isset($_SESSION['locale']) ? $_SESSION['locale'] : 'fr').'.php';
+include_once '../inc/header_login.htm';
 ?>
 <div id="main">
 <?php
