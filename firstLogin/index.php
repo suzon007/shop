@@ -5,12 +5,7 @@ use Manager\UtilitiesManager;
 
 session_start();
 
-if(isset($_SESSION['locale']) && !empty($_SESSION['locale']))
-{
-    $_SESSION['locale'] = 'fr';
-}
-
-include_once '../translations/label_'.$_SESSION['locale'].'.php'; //entry const file translation
+include_once '../translations/label_'.(isset($_SESSION['locale']) ? $_SESSION['locale'] : 'fr').'.php'; //entry const file translation
 
 if(isset($_SESSION['customer_email']) && !empty($_SESSION['customer_email'])) //check email only
 {
