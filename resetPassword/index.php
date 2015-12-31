@@ -36,8 +36,9 @@ if(count($_GET) > 0)
             <input type="email" name="email_rescue" id="email_rescue" placeholder="Email" autofocus />
         </form>
         <br>
-        <a href="#" onclick="sendResetPasswdLink(document.getElementById('email_rescue').value);"><?php echo SEND ?></a>
-        <p id="return_from_sendResetPasswdLink"></p>
+        <p id="return_from_sendResetPasswdLink">
+            <a href="#" onclick="sendResetPasswdLink(document.getElementById('email_rescue').value);"><?php echo SEND ?></a>
+        </p>
     </div>
 <?php
 }

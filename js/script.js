@@ -341,7 +341,8 @@ function sendResetPasswdLink(p1_email_rescue)
             {
                 if(oReq.responseText.substr(0, 1) === 'e')
                 {
-                    document.getElementById('return_from_sendResetPasswdLink').innerHTML = oReq.responseText.substr(1);
+                    document.getElementById('return_from_sendResetPasswdLink').innerHTML = '<a href="#" onclick="sendResetPasswdLink(document.getElementById(\'email_rescue\').value);">'+translations[locale][4]+'</a><br>';
+                    document.getElementById('return_from_sendResetPasswdLink').innerHTML += oReq.responseText.substr(1);
 
                 }else
                 {
