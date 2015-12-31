@@ -1,7 +1,7 @@
 /*you can use these globals variables (they are wrtitten by PHP in ../index.php and passed to JS)
 
-var tampoonFirstRate
-var tampoonSecondRate
+var item
+var XRateInt
 var minimumQuantityOrder
 var currency
 var locale
@@ -36,15 +36,24 @@ function makeSum()
 
     divInfo.innerHTML = translations[locale][9]+': '+sum+'<br>';
 
-    if(sum < 100)
+    if(item === 'tampoon') //need to find better approach in a near future
     {
-        total = sum * tampoonFirstRate;
-        divInfo.innerHTML += 'Total: '+total+' '+currency+'<br>';
+        if(sum < 100)
+        {
+            total = sum * tampoonRate1;
+            divInfo.innerHTML += 'Total: '+total+' '+currency+'<br>';
 
-    }else
-    {
-        total = sum * tampoonSecondRate;
-        divInfo.innerHTML += 'Total: '+total+' '+currency+'<br>'; }
+        }else
+        {
+            total = sum * tampoonRate2;
+            divInfo.innerHTML += 'Total: '+total+' '+currency+'<br>';
+        }
+
+    }else if(item === 'markball'){
+
+        total = sum * markballRate1;
+        divInfo.innerHTML += 'Total: '+total+' '+currency+'<br>';
+    }
 
     if(sum >= minimumQuantityOrder)
     {
@@ -73,23 +82,31 @@ function checkValues()
 function processOrder()
 {
 
-    var standingUnits = document.getElementsByName('standing_unit');
+    try{
+        var standingUnits = document.getElementsByName('standing_unit');
+
+    }catch(e){ alert(e.toString()); }
+
     var containerSendMailLink = document.getElementById('pForProcessOrder');
-    containerSendMailLink.innerHTML = '<img src="../img/spinner.gif" style="border: none;" />';
+    containerSendMailLink.innerHTML = '<img src="img/spinner.gif" style="border: none;" />';
 
     var oData = new FormData(document.forms.namedItem('the_form'));
     var oReq = new XMLHttpRequest();
 
-    oReq.open('POST', '../ajax/processOrder.php', true);
+    oReq.open('POST', './ajax/processOrder.php', true);
 
     oData.append('quantityTampoon', sum);
     oData.append('total', total);
+    oData.append('item', item);
 
-    for(var i = 0; i < standingUnits.length; i++)
+    if(standingUnits != null || standingUnits != undefined || standingUnits != 'undefined')
     {
-        if(standingUnits[i].checked)
+        for(var i = 0; i < standingUnits.length; i++)
         {
-            oData.append('standingUnit', standingUnits[i].value);
+            if(standingUnits[i].checked)
+            {
+                oData.append('standingUnit', standingUnits[i].value);
+            }
         }
     }
 
@@ -281,7 +298,7 @@ function handleSession(p1_email)
 
         var oReq = new XMLHttpRequest();
 
-        oReq.open('POST', '../ajax/handleSession.php', true);
+        oReq.open('POST', './ajax/handleSession.php', true);
 
         oReq.onload = function(oEvent)
         {

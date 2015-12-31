@@ -34,8 +34,20 @@ include_once 'translations/label_'.$_SESSION['locale'].'.php';
     <script>
         <?php
         //pass PHP consts to JavaScript
-        echo 'var tampoonFirstRate = ' . IC::TAMPOON_FIRST_RATE . ';' . PHP_EOL;
-        echo 'var tampoonSecondRate = ' . IC::TAMPOON_SECOND_RATE . ';' . PHP_EOL;
+
+        echo 'var item = "'.$_SESSION['item'].'";'.PHP_EOL;
+
+        if(count(IC::SHOP_ITEMS_AND_RATES[$_SESSION['item']]) > 0){
+
+                $i = 0;
+                foreach(IC::SHOP_ITEMS_AND_RATES[$_SESSION['item']] as $rate):
+
+                    $i++;
+                    echo 'var '.$_SESSION['item'].'Rate'.$i.' = ' .$rate. ';' . PHP_EOL;
+
+                endforeach;
+            }
+
         echo 'var minimumQuantityOrder = ' . IC::MINIMUM_Q_ORDER . ';' . PHP_EOL;
         echo 'var currency = "' . IC::CURRENCY[0] . '";' . PHP_EOL;
         echo 'var locale = "' . $_SESSION['locale'] . '";' . PHP_EOL;

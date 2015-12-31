@@ -164,10 +164,11 @@ class DatabaseManager implements IC
     public function saveOrder(array $p1_datas_post, $p2_filesSaved, $p3_id_customer)
     {
         $queryOne = 'INSERT INTO tbl_orders
-                    SET id_customer = '.$p3_id_customer.',
-                    date_order = "'.$this->dateOrder.'",
-                    total = "'.$this->sqli->real_escape_string($p1_datas_post['total']).'",
-                    status = '.$p2_filesSaved;
+                     SET id_customer = '.$p3_id_customer.',
+                     date_order = "'.$this->dateOrder.'",
+                     total = "'.$this->sqli->real_escape_string($p1_datas_post['total']).'",
+                     status = '.$p2_filesSaved.',
+                     item = "'.$p1_datas_post['item'].'"';
 
         $resultOne = $this->sqli->query($queryOne);
 
@@ -186,7 +187,7 @@ class DatabaseManager implements IC
 
                     $queryTwo = 'INSERT INTO tbl_orders_details
                                  SET id_order = '.$insertIdQueryOne.',
-                                  id_tampoon = (SELECT id FROM tbl_tampoon WHERE tbl_tampoon.reference = "'.$tampoonRef.'"),
+                                  id_item = (SELECT id FROM tbl_'.$p1_datas_post['item'].' WHERE tbl_'.$p1_datas_post['item'].'.reference = "'.$tampoonRef.'"),
                                   quantity = '.(int)$v;
 
                     $resultTwo = $this->sqli->query($queryTwo);
@@ -196,21 +197,22 @@ class DatabaseManager implements IC
 
             endforeach;
 
-            return $this->updateTampoonQuantities($onlyTampoonInfos);
+            return $this->updateItemQuantities($onlyTampoonInfos, $p1_datas_post['item']);
 
         }else return $this->sqli->error;
 
     }
-    
+
     /**
      * @param array $p1_tampoon_infos
+     * @param $p2_item
      * @return bool|string
      */
-    public function updateTampoonQuantities(array $p1_tampoon_infos)
+    public function updateItemQuantities(array $p1_tampoon_infos, $p2_item)
     {
         foreach($p1_tampoon_infos as $k => $v):
 
-            $query = 'UPDATE tbl_tampoon AS tp1 INNER JOIN tbl_tampoon AS tp2 ON tp1.reference = tp2.reference AND tp1.reference ="'.$k.'" SET tp1.quantity = (tp2.quantity - '.(int)$v.')';
+            $query = 'UPDATE tbl_'.$p2_item.' AS tp1 INNER JOIN tbl_'.$p2_item.' AS tp2 ON tp1.reference = tp2.reference AND tp1.reference = "'.$k.'" SET tp1.quantity = (tp2.quantity - '.(int)$v.')';
 
             $result = $this->sqli->query($query);
 

@@ -77,7 +77,7 @@ class FileManager implements IC
     {
         $this->pdfPath = pathinfo(__DIR__)['dirname'].IC::DS.'pdf'.IC::DS.$this->ref.'.pdf';
 
-        $htmlOutput = '<div id="order_details"><h1>'.PURCHASE_ORDER.'</h1><br>Total Tampoon '.$p1_datas_post['quantityTampoon'];
+        $htmlOutput = '<div id="order_details"><h1>'.PURCHASE_ORDER.'</h1><br>Total '.$p1_datas_post['item'].' '.$p1_datas_post['quantityTampoon'];
 
         if($p1_datas_post['standingUnit'] === '1')
         {
@@ -102,19 +102,20 @@ class FileManager implements IC
                 $reference = strtr($k, '_', ' ');
 
                 $i++;
+                $iconPath = '../icon_'.$p1_datas_post['item'].'/'.$reference.'.jpg';
 
                 if($i === 6)
                 {
                     $i = 0;
 
-                    $htmlOutput .= '<td><img src="../icon/'.$reference.'.jpg" style="width: 25px;"></td><td>'.$reference.'</td><td>'.$v.'</td></tr>'.PHP_EOL;
+                    $htmlOutput .= '<td><img src="'.$iconPath.'" style="width: 25px;"></td><td>'.$reference.'</td><td>'.$v.'</td></tr>'.PHP_EOL;
 
 
                 }elseif($i === 1)
                 {
-                    $htmlOutput .= '<tr><td><img src="../icon/'.$reference.'.jpg" style="width: 25px;"></td><td>'.$reference.'</td><td>'.$v.'</td>'.PHP_EOL;
+                    $htmlOutput .= '<tr><td><img src="'.$iconPath.'" style="width: 25px;"></td><td>'.$reference.'</td><td>'.$v.'</td>'.PHP_EOL;
 
-                }else $htmlOutput .= '<td><img src="../icon/'.$reference.'.jpg" style="width: 25px;"></td><td>'.$reference.'</td><td>'.$v.'</td>'.PHP_EOL;
+                }else $htmlOutput .= '<td><img src="'.$iconPath.'" style="width: 25px;"></td><td>'.$reference.'</td><td>'.$v.'</td>'.PHP_EOL;
 
             }
 

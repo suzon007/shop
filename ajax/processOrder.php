@@ -46,7 +46,7 @@ if(count($_POST) > 0)
         if(IC::SEND_MAIL_ENABLED)
         {
             include_once '../Manager/MailManager.php';
-            $subject = PURCHASE_ORDER.' tampoon.net';
+            $subject = PURCHASE_ORDER.' '.$datasPost['item'].' '.$_SERVER['HTTP_HOST'];
             $msg = '<html><body><h3>Ref: '.$_SESSION['customer_email'].' '.$dbm->dateOrder.'</h3></body></html>';
 
             $mm = new MailManager($_SESSION['customer_email'], IC::SENDER_NAME, $subject, $msg, [$fm->pdfPath, ]);
@@ -69,7 +69,7 @@ if(count($_POST) > 0)
 
         }else $errorMsg .= ENABLE_MAIL;
 
-    }else $errorMsg = USER_SESSION_LOST.'<a href="../login">login</a>';
+    }else $errorMsg = USER_SESSION_LOST.'<a href="login/">login</a>';
     
     if(!empty($errorMsg)) echo 'e<font color="red">'.$errorMsg.'</font>';
 }
