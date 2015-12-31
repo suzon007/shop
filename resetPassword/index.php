@@ -33,7 +33,7 @@ if(count($_GET) > 0)
     <div id="recover_passwd_content">
         <h3><?php echo FORGOTTEN_PASSWD ?></h3>
         <form name="recover_passwd" id="recover_passwd" method="post">
-            <input type="email" name="email_rescue" id="email_rescue" placeholder="Email" autofocus />
+            <input type="email" name="email_rescue" id="email_rescue" value="<?php echo isset($_POST['email_rescue']) ? trim($_POST['email_rescue']) : '' ?>" placeholder="Email" autofocus />
         </form>
         <br>
         <p id="return_from_sendResetPasswdLink">
