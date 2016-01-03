@@ -128,7 +128,7 @@ endforeach;
 
         foreach ($outputDBM as $rows):
 
-            $icon = 'icon_'.$_SESSION['item'].'/'.$rows['reference'] . '.jpg';
+            $icon = 'icon/'.$_SESSION['item'].'/'.$rows['reference'] . '.jpg';
 
             echo '<div class="container_icon" id="container_' . $rows['reference'] . '"><table><tr><td><img class="icon" src="' . $icon . '" /></td></tr>';
             echo '<tr><td>' . $rows['reference'] . '</td></tr>';

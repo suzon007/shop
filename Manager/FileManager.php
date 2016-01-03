@@ -102,7 +102,7 @@ class FileManager implements IC
                 $reference = strtr($k, '_', ' ');
 
                 $i++;
-                $iconPath = '../icon_'.$p1_datas_post['item'].'/'.$reference.'.jpg';
+                $iconPath = '../icon/'.$p1_datas_post['item'].'/'.$reference.'.jpg';
 
                 if($i === 6)
                 {
