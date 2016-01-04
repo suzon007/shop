@@ -37,7 +37,7 @@ if(count($_POST) > 0)
                 {
                     $_SESSION['customer_email'] = $output2['email'];
                     $_SESSION['customer_id']    = $output2['id'];
-                    header('Location: ../order');
+                    header('Location: ../');
 
                 }else $errorMsg = $output2;
 
