@@ -49,12 +49,12 @@ if(count($_POST) > 0)
             $subject = PURCHASE_ORDER.' '.$datasPost['item'].' '.$_SERVER['HTTP_HOST'];
             $msg = '<html><body><h3>Ref: '.$_SESSION['customer_email'].' '.$dbm->dateOrder.'</h3></body></html>';
 
-            $mm = new MailManager($_SESSION['customer_email'], IC::SENDER_NAME, $subject, $msg, [$fm->pdfPath, ]);
+            $mm = new MailManager($_SESSION['customer_email'], stristr($_SESSION['customer_email'], '@', TRUE), $subject, $msg, [$fm->pdfPath, ]);
             $output = $mm->send();
 
             if(is_string($output)) $errorMsg .= $output;
 
-            $mm2 = new MailManager(IC::PRESTEEGE_BOX, IC::SENDER_NAME, $subject, $msg, [$fm->pdfPath, $fm->csvPath, ]);
+            $mm2 = new MailManager(IC::PRESTEEGE_BOX, IC::PRESTEEGE_OWNER, $subject, $msg, [$fm->pdfPath, $fm->csvPath, ]);
             $output2 = $mm2->send();
 
             if($output2)
