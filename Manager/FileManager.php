@@ -108,14 +108,14 @@ class FileManager implements IC
                 {
                     $i = 0;
 
-                    $htmlOutput .= '<td><img src="'.$iconPath.'" style="width: 25px;"></td><td>'.$reference.'</td><td>'.$v.'</td></tr>'.PHP_EOL;
+                    $htmlOutput .= '<td><img src="'.$iconPath.'" style="width: 25px;"></td><td>'.$reference.'</td><td><b>'.$v.'</b></td></tr>'.PHP_EOL;
 
 
                 }elseif($i === 1)
                 {
-                    $htmlOutput .= '<tr><td><img src="'.$iconPath.'" style="width: 25px;"></td><td>'.$reference.'</td><td>'.$v.'</td>'.PHP_EOL;
+                    $htmlOutput .= '<tr><td><img src="'.$iconPath.'" style="width: 25px;"></td><td>'.$reference.'</td><td><b>'.$v.'</b></td>'.PHP_EOL;
 
-                }else $htmlOutput .= '<td><img src="'.$iconPath.'" style="width: 25px;"></td><td>'.$reference.'</td><td>'.$v.'</td>'.PHP_EOL;
+                }else $htmlOutput .= '<td><img src="'.$iconPath.'" style="width: 25px;"></td><td>'.$reference.'</td><td><b>'.$v.'</b></td>'.PHP_EOL;
 
             }
 
