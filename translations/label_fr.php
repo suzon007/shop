@@ -52,3 +52,4 @@ define('SHOW', 'Montrer');
 define('USER_SESSION_LOST', 'Votre session a expiré, connectez-vous à la page ');
 define('WRONG_LOGIN_PAGE', 'Vous devez vous connecter ici ');
 define('FIRST_CONNECTION', 'Première connexion');
+define('LOGIN', 'Connection');
