@@ -22,7 +22,7 @@ class DatabaseManager implements IC
     public function __construct()
     {
         $this->sqli = new \mysqli(IC::MYSQLI_HOST, IC::MYSQLI_USER, IC::MYSQLI_PASSWORD, IC::MYSQLI_DBNAME);
-        $this->dateOrder = date('Y-m-d h:i:s');
+        $this->dateOrder = date('Y-m-d H:i:s');
     }
 
     /**
