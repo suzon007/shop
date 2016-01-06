@@ -53,7 +53,7 @@ include_once '../inc/header_login.php';
     <h1><?php echo FIRST_CONNECTION ?></h1>
     <form method="post" name="the_form" id="the_form">
         <input type="email" name="email" placeholder="Email" value="<?php echo !empty($_POST['email']) ? $_POST['email'] : '' ?>" autofocus/><br>
-        <input type="password" name="psk" value="<?php echo !empty($_POST['psk']) ? $_POST['psk'] : '' ?>" placeholder="<?php echo PSK ?>">
+        <input type="text" name="psk" value="<?php echo !empty($_POST['psk']) ? $_POST['psk'] : '' ?>" placeholder="<?php echo PSK ?>">
         <br><?php echo DEFINE_NEW_PASSWD ?>
         <br><input type="password" name="new_password" id="new_password" placeholder="<?php echo PASSWD.' 6 '.CHARS ?>">
         &nbsp;<span onmouseover="document.getElementById('new_password').type ='text';" onmouseout="document.getElementById('new_password').type ='password';"><?php echo SHOW ?></span>
