@@ -134,10 +134,10 @@ endforeach;
             echo '<tr><td>' . $rows['reference'] . '</td></tr>';
             echo '<tr><td>';
             echo '<input placeholder="'.(($rows['quantity'] < 0) ? 0 : $rows['quantity']).'" type="number" min="0" max="99"';
-            echo ' id="' . $rows['reference'] . '" name="' . $rows['reference'] . '" onclick="makeSum();" onkeyup="makeSum();" ';
+            echo ' id="' . $rows['reference'] . '" name="' . $rows['reference'] . '" onclick="makeSum(this);" onkeyup="makeSum(this);" ';
             echo 'onchange="switchDivDisplay(this.value, \'container_' . $rows['reference'] . '\')" ';
             echo 'onfocus="if(document.getElementById(\'checkvalues\').style.visibility === \'visible\') document.getElementById(\'checkvalues\').style.visibility = \'hidden\';"/>';
-            echo ($rows['quantity'] > 0) ? '&nbsp;dispo' : '&nbsp;<span class="asterisk">*</span>';
+            echo '&nbsp;<span id="span_'.$rows['reference'].'"'.(($rows['quantity'] > 0) ? '>dispo' : 'class="asterisk">*').'</span>';
             echo '</td></tr>';
             echo '</table></div>';
 
