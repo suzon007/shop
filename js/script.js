@@ -15,16 +15,20 @@ function makeSum(p1_input_number)
 {
     sum = 0;
 
-    if(p1_input_number.value > p1_input_number.placeholder)
+    if(typeof p1_input_number === 'object')
     {
+        if(p1_input_number.value > p1_input_number.placeholder)
+        {
 
-        document.getElementById('span_'+p1_input_number.id).innerHTML = '*';
-        document.getElementById('span_'+p1_input_number.id).className = 'asterisk';
+            document.getElementById('span_'+p1_input_number.id).innerHTML = '*';
+            document.getElementById('span_'+p1_input_number.id).className = 'asterisk';
 
-    }else if(p1_input_number.value <= p1_input_number.placeholder)
-    {
-        document.getElementById('span_'+p1_input_number.id).innerHTML = translations[locale][10];
-        document.getElementById('span_'+p1_input_number.id).className = '';
+        }else if(p1_input_number.value <= p1_input_number.placeholder)
+        {
+            document.getElementById('span_'+p1_input_number.id).innerHTML = translations[locale][10];
+            document.getElementById('span_'+p1_input_number.id).className = '';
+
+        }
 
     }
 
