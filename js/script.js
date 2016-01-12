@@ -14,14 +14,11 @@ var styleTampoonContainer = 'border: 2px solid cornflowerblue;border-radius: 3px
 function makeSum(p1_input_number)
 {
     sum = 0;
-    
-    console.log(func_num_args());
 
-    if(typeof p1_input_number === 'object')
+    if(func_num_args() > 0)
     {
         if(p1_input_number.value > p1_input_number.placeholder)
         {
-
             document.getElementById('span_'+p1_input_number.id).innerHTML = '*';
             document.getElementById('span_'+p1_input_number.id).className = 'asterisk';
 
@@ -29,9 +26,7 @@ function makeSum(p1_input_number)
         {
             document.getElementById('span_'+p1_input_number.id).innerHTML = translations[locale][10];
             document.getElementById('span_'+p1_input_number.id).className = '';
-
         }
-
     }
 
     var inputs = document.querySelectorAll('#main input');
@@ -163,7 +158,7 @@ function clearAllInputsValues()
         document.getElementById('container_'+inputs[i].id).style.cssText = 'border: none;';
     }
 
-    makeSum();
+    document.getElementById('infos').style.display = 'none';
 }
 
 function fillAllWith1Q()
