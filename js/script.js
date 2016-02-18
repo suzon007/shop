@@ -80,6 +80,7 @@ function makeSum(p1_input_number)
 
     }else{
         document.getElementById('infos').style.display = 'none';
+        document.getElementById(p1_input_number.id).value = '';
     }
 
 }
