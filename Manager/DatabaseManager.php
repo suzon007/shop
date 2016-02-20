@@ -138,11 +138,23 @@ class DatabaseManager implements IC
     /**
      * @param $p1_item
      * @param bool $p2_display_only_available
+     * @param bool $p3_display_active
      * @return \Generator
      */
-    public function fetchItemInfos($p1_item, $p2_display_only_available = TRUE)
+    public function fetchItemInfos($p1_item, $p2_display_only_available = TRUE, $p3_display_active = TRUE)
     {
-        $result = $this->sqli->query('SELECT * FROM tbl_'.$p1_item.' '.(($p2_display_only_available) ? 'WHERE quantity > 0' : ''));
+        $sql = 'SELECT * FROM tbl_'.$p1_item.' ';
+
+        if($p2_display_only_available && $p3_display_active)
+        {
+            $sql .= 'WHERE quantity > 0 AND active = 1';
+
+        }elseif($p2_display_only_available XOR $p3_display_active)
+        {
+            $sql .= $p2_display_only_available ? ' WHERE quantity > 0' : 'WHERE active = 1';
+        }
+        
+        $result = $this->sqli->query($sql);
 
         if(is_object($result))
         {
