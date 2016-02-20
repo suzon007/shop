@@ -9,20 +9,31 @@ var locale
 
 var sum;
 var total;
-var styleTampoonContainer = 'border: 2px solid cornflowerblue;border-radius: 3px;padding: 5px;';
+var styleTampoonContainer = 'border: 2px solid cornflowerblue; border-radius: 3px; padding: 5px;';
 
 function makeSum(p1_input_number)
 {
     sum = 0;
 
-    if(func_num_args() > 0)
+    if(func_num_args() > 0) //means that its a client event from input number
     {
-        if(p1_input_number.value > p1_input_number.placeholder)
+
+        if(p1_input_number.value == 0 || p1_input_number.value == ''){
+
+            p1_input_number.value = '';
+            document.getElementById('container_'+p1_input_number.id).style.cssText = 'border: none;';
+
+        }else{
+
+            document.getElementById('container_'+p1_input_number.id).style.cssText = styleTampoonContainer;
+        }
+
+        if(parseInt(p1_input_number.value) > parseInt(p1_input_number.placeholder))
         {
             document.getElementById('span_'+p1_input_number.id).innerHTML = '*';
             document.getElementById('span_'+p1_input_number.id).className = 'asterisk';
 
-        }else if(p1_input_number.value <= p1_input_number.placeholder)
+        }else if(parseInt(p1_input_number.value) <= parseInt(p1_input_number.placeholder))
         {
             document.getElementById('span_'+p1_input_number.id).innerHTML = translations[locale][10];
             document.getElementById('span_'+p1_input_number.id).className = '';
@@ -80,7 +91,6 @@ function makeSum(p1_input_number)
 
     }else{
         document.getElementById('infos').style.display = 'none';
-        document.getElementById(p1_input_number.id).value = '';
     }
 
 }
