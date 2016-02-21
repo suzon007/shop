@@ -76,7 +76,7 @@ function makeSum(p1_input_number)
 
     }else if(item === 'markball'){
 
-        total = Math.round10(sum * markballRate1, -1);
+        total = Math.round10(sum * markballRate1, -2);
         divInfo.innerHTML += 'Total: '+total+' '+currency+'<br>';
     }
 
