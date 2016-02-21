@@ -48,7 +48,12 @@ include_once 'translations/label_'.$_SESSION['locale'].'.php';
                 endforeach;
             }
 
-        echo 'var minimumQuantityOrder = ' . IC::MINIMUM_Q_ORDER . ';' . PHP_EOL;
+        if($_SESSION['item'] === 'markball'){
+            
+            echo 'var minimumQuantityOrder = 10;' . PHP_EOL;
+            
+        }else   echo 'var minimumQuantityOrder = ' . IC::MINIMUM_Q_ORDER . ';' . PHP_EOL;
+
         echo 'var currency = "' . IC::CURRENCY[0] . '";' . PHP_EOL;
         echo 'var locale = "' . $_SESSION['locale'] . '";' . PHP_EOL;
         ?>
