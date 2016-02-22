@@ -7,7 +7,7 @@ html, body{
 
 body{ font-family: arial, sans-serif; font-size: 12px; }
 
-.icon{ width: 50px; height: 50px; text-align: center;}
+.icon{ max-width: 100px; max-height: 100px; text-align: center;}
 
 #infos{ font-size: 18px; display: none; padding: 5px; color: white; width: 150px; height: 80px; /*position: fixed;*/ background-color: black; opacity: 0.8; border-radius: 5px; /*left: 80%; top: 10px;*/ text-align: center; }
 
