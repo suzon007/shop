@@ -195,7 +195,7 @@ class DatabaseManager implements IC
 
                 if(FALSE !== stripos($k, '_'))      //the post key that has underscore correspond to tampoon ref
                 {
-                    $tampoonRef = strtr($k, '_', ' ');
+                    $tampoonRef = strtr($k, '_', '.'); //this is because github upload file add "." to blank and php replace point with underscores
                     $onlyTampoonInfos[$tampoonRef] = $v;
 
                     $queryTwo = 'INSERT INTO tbl_orders_details

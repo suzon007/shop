@@ -99,7 +99,7 @@ class FileManager implements IC
 
             if(FALSE !== stripos($k, '_'))      //the post key that has underscore correspond to tampoon ref
             {
-                $reference = strtr($k, '_', ' ');
+                $reference = strtr($k, '_', '.'); //this is because github upload file add "." to blank and php replace point with underscores
 
                 $i++;
                 $iconPath = '../icon/'.$p1_datas_post['item'].'/'.$reference.'.jpg';
