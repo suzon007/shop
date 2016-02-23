@@ -91,10 +91,11 @@ endforeach;
     <div>
         <form style="float: left">
             <select id="fillAction"
-                    onchange="if(this.value === 'all'){ fillAllWith1Q(); }else if(this.value == '1'){ fill50ValWithXQ(parseInt(this.value)); }else{ fillXQuantitiesWithXItems(1, 100); }">
+                    onchange="if(this.value === 'all'){ fillAllWith1Q(); }else{ fillXQuantitiesWithXItems(1, parseInt(this.value)); }">
                 <option value="all"><?php echo FILL_ALL_WITH_ONE ?></option>
-                <option value="1"><?php echo FILL_50_WITH_1 ?></option>
-                <option value="2"><?php echo FILL_100_WITH_1 ?></option>
+                <option value="50"><?php echo FILL_50_WITH_1 ?></option>
+                <option value="100"><?php echo FILL_100_WITH_1 ?></option>
+                <option value="25"><?php echo FILL_25_WITH_1 ?></option>
             </select>
             <p>
                 <a href="#" onclick="clearAllInputsValues();"><?php echo CLEAR_VALUES ?></a>

@@ -53,3 +53,4 @@ define('USER_SESSION_LOST', 'Your session expired please reconnect to ');
 define('WRONG_LOGIN_PAGE', 'You must login here ');
 define('FIRST_CONNECTION', 'First connection');
 define('LOGIN', 'Login');
+define('FILL_25_WITH_1', 'Fill 25 with 1 quantity');
