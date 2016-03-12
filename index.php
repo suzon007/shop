@@ -91,7 +91,8 @@ endforeach;
     <div>
         <form style="float: left">
             <select id="fillAction"
-                    onchange="if(this.value === 'all'){ fillAllWith1Q(); }else{ fillXQuantitiesWithXItems(1, parseInt(this.value)); }">
+                    onchange="whatNext(this.value);">
+                <option value=""><?php echo CHOOSE ?></option>
                 <option value="all"><?php echo FILL_ALL_WITH_ONE ?></option>
                 <option value="50"><?php echo FILL_50_WITH_1 ?></option>
                 <option value="100"><?php echo FILL_100_WITH_1 ?></option>

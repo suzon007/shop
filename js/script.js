@@ -416,6 +416,22 @@ function updatePasswd()
   oReq.send(oData);
 }
 
+function whatNext(p1optionValue)
+{
+    if(p1optionValue != ''){
+
+        if(p1optionValue === 'all') {
+
+            fillAllWith1Q();
+
+        }else{
+
+            fillXQuantitiesWithXItems(1, parseInt(p1optionValue));
+
+        }
+    }
+}
+
 function array_rand(input, num_req) {
     //  discuss at: http://phpjs.org/functions/array_rand/
     // original by: Waldo Malqui Silva (http://waldo.malqui.info)
