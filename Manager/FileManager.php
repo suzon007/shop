@@ -53,10 +53,10 @@ class FileManager implements IC
 
         foreach($p1_datas_post as $k => $v):
 
-            //the post key that has underscore correspond to tampoon ref
-            if(FALSE !== stripos($k, '_'))
+            //the post key that correspond to items ref
+            if(!in_array($k, IC::KEYS_FORM_PROTECTED))
             {
-                $csv .= strtr($k, '_', ' ').';'.((empty($v)) ? 0 : $v).PHP_EOL;
+                $csv .= $k.';'.((empty($v)) ? 0 : $v).PHP_EOL;
             }
 
         endforeach;
@@ -77,7 +77,7 @@ class FileManager implements IC
     {
         $this->pdfPath = pathinfo(__DIR__)['dirname'].IC::DS.'pdf'.IC::DS.$this->ref.'.pdf';
 
-        $htmlOutput = '<div id="order_details"><h1>'.PURCHASE_ORDER.'</h1><br>Total '.$p1_datas_post['item'].' '.$p1_datas_post['quantityTampoon'];
+        $htmlOutput = '<div id="order_details"><h1>'.PURCHASE_ORDER.'</h1><br>Total '.$p1_datas_post['item'].' '.$p1_datas_post['quantityItem'];
 
         if($p1_datas_post['standingUnit'] === '1')
         {
@@ -97,25 +97,23 @@ class FileManager implements IC
 
         foreach($p1_datas_post as $k => $v):
 
-            if(FALSE !== stripos($k, '_'))      //the post key that has underscore correspond to tampoon ref
+            if(!in_array($k, IC::KEYS_FORM_PROTECTED))      //the post key that correspond to item refs
             {
-                $reference = strtr($k, '_', '.'); //this is because github upload file add "." to blank and php replace point with underscores
-
                 $i++;
-                $iconPath = '../icon/'.$p1_datas_post['item'].'/'.$reference.'.jpg';
+                $iconPath = '../icon/'.$p1_datas_post['item'].'/'.$k.'.jpg';
 
                 if($i === 6)
                 {
                     $i = 0;
 
-                    $htmlOutput .= '<td><img src="'.$iconPath.'" style="width: 25px;"></td><td>'.$reference.'</td><td><b>'.$v.'</b></td></tr>'.PHP_EOL;
+                    $htmlOutput .= '<td><img src="'.$iconPath.'" style="width: 25px;"></td><td>'.$k.'</td><td><b>'.$v.'</b></td></tr>'.PHP_EOL;
 
 
                 }elseif($i === 1)
                 {
-                    $htmlOutput .= '<tr><td><img src="'.$iconPath.'" style="width: 25px;"></td><td>'.$reference.'</td><td><b>'.$v.'</b></td>'.PHP_EOL;
+                    $htmlOutput .= '<tr><td><img src="'.$iconPath.'" style="width: 25px;"></td><td>'.$k.'</td><td><b>'.$v.'</b></td>'.PHP_EOL;
 
-                }else $htmlOutput .= '<td><img src="'.$iconPath.'" style="width: 25px;"></td><td>'.$reference.'</td><td><b>'.$v.'</b></td>'.PHP_EOL;
+                }else $htmlOutput .= '<td><img src="'.$iconPath.'" style="width: 25px;"></td><td>'.$k.'</td><td><b>'.$v.'</b></td>'.PHP_EOL;
 
             }
 

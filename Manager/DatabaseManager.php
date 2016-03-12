@@ -193,14 +193,14 @@ class DatabaseManager implements IC
 
             foreach($p1_datas_post as $k => $v):
 
-                if(FALSE !== stripos($k, '_'))      //the post key that has underscore correspond to tampoon ref
+                if(!in_array($k, IC::KEYS_FORM_PROTECTED))      //the post key that correspond to item refs
                 {
-                    $tampoonRef = strtr($k, '_', '.'); //this is because github upload file add "." to blank and php replace point with underscores
-                    $onlyTampoonInfos[$tampoonRef] = $v;
+                    $onlyTampoonInfos[$k] = $v;
 
+                    //we decided not to let blank space but dot in case of upload icons from within github
                     $queryTwo = 'INSERT INTO tbl_orders_details
                                  SET id_order = '.$insertIdQueryOne.',
-                                  id_item = (SELECT id FROM tbl_'.$p1_datas_post['item'].' WHERE tbl_'.$p1_datas_post['item'].'.reference = "'.$tampoonRef.'"),
+                                  id_item = (SELECT id FROM tbl_'.$p1_datas_post['item'].' WHERE tbl_'.$p1_datas_post['item'].'.reference = "'.$k.'" OR reference ="'.strtr($k, '_', '.').'"),
                                   quantity = '.(int)$v;
 
                     $resultTwo = $this->sqli->query($queryTwo);
@@ -225,7 +225,9 @@ class DatabaseManager implements IC
     {
         foreach($p1_tampoon_infos as $k => $v):
 
-            $query = 'UPDATE tbl_'.$p2_item.' AS tp1 INNER JOIN tbl_'.$p2_item.' AS tp2 ON tp1.reference = tp2.reference AND tp1.reference = "'.$k.'" SET tp1.quantity = (tp2.quantity - '.(int)$v.')';
+            $query = 'UPDATE tbl_'.$p2_item.' AS tp1 INNER JOIN tbl_'.$p2_item.' AS tp2 ON tp1.reference = tp2.reference AND tp1.reference = "'.$k.'" OR tp1.reference ="'.strtr($k, '_', '.').'" SET tp1.quantity = (tp2.quantity - '.(int)$v.')';
+
+            echo $query;
 
             $result = $this->sqli->query($query);
 

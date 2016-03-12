@@ -120,7 +120,7 @@ function processOrder()
 
     oReq.open('POST', './ajax/processOrder.php', true);
 
-    oData.append('quantityTampoon', sum);
+    oData.append('quantityItem', sum);
     oData.append('total', total);
     oData.append('item', item);
 
