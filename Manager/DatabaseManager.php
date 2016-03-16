@@ -200,7 +200,7 @@ class DatabaseManager implements IC
                     //we decided not to let blank space but dot in case of upload icons from within github
                     $queryTwo = 'INSERT INTO tbl_orders_details
                                  SET id_order = '.$insertIdQueryOne.',
-                                  id_item = (SELECT id FROM tbl_'.$p1_datas_post['item'].' WHERE tbl_'.$p1_datas_post['item'].'.reference = "'.$k.'" OR reference ="'.strtr($k, '_', '.').'"),
+                                  id_item = (SELECT id FROM tbl_'.$p1_datas_post['item'].' WHERE tbl_'.$p1_datas_post['item'].'.reference = "'.$k.'"),
                                   quantity = '.(int)$v;
 
                     $resultTwo = $this->sqli->query($queryTwo);
@@ -225,9 +225,9 @@ class DatabaseManager implements IC
     {
         foreach($p1_tampoon_infos as $k => $v):
 
-            $query = 'UPDATE tbl_'.$p2_item.' AS tp1 INNER JOIN tbl_'.$p2_item.' AS tp2 ON tp1.reference = tp2.reference AND tp1.reference = "'.$k.'" OR tp1.reference ="'.strtr($k, '_', '.').'" SET tp1.quantity = (tp2.quantity - '.(int)$v.')';
+            $query = 'UPDATE tbl_'.$p2_item.' AS tp1 INNER JOIN tbl_'.$p2_item.' AS tp2 ON tp1.reference = tp2.reference AND tp1.reference = "'.$k.'" SET tp1.quantity = (tp2.quantity - '.(int)$v.')';
 
-            echo $query;
+            //echo $query;
 
             $result = $this->sqli->query($query);
 

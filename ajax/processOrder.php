@@ -20,7 +20,15 @@ if(count($_POST) > 0)
 
             $cleanedValues = trim($v);
 
-            if(!empty($cleanedValues)) $datasPost [$k] = $cleanedValues;
+            $cleanedKeys = str_replace(['espace', 'point', ], [' ', '.', ], $k); //this is the operation from index.php
+
+            if(!empty($cleanedValues)){
+
+                $datasPost [$cleanedKeys] = $cleanedValues;
+
+            }
+
+            $datasPost2 [$cleanedKeys] = $cleanedValues;
 
         endforeach;
 
@@ -31,7 +39,7 @@ if(count($_POST) > 0)
 
         include_once '../Manager/FileManager.php';
         $fm = new FileManager($_SESSION['customer_email'], $dbm->dateOrder);
-        $outputCSV = $fm->formatAndWriteCSV($_POST);                    // here we still pass all the original POST array to retrieve even empty ref
+        $outputCSV = $fm->formatAndWriteCSV($datasPost2);                    // here we still pass all the original POST array to retrieve even empty ref
 
         if(is_string($outputCSV)) $errorMsg .= $outputCSV.'<br>';
 

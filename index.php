@@ -135,16 +135,18 @@ endforeach;
 
         foreach ($outputDBM as $rows):
 
-            $icon = 'icon/'.$_SESSION['item'].'/'.$rows['reference'] . '.jpg';
+            $ref = str_replace([' ', '.', ], ['espace', 'point', ], $rows['reference']); //because php replace spaces and points by underscores when posting
 
-            echo '<div class="container_icon" id="container_' . $rows['reference'] . '"><table><tr><td><img class="icon" src="' . $icon . '" /></td></tr>';
-            echo '<tr><td>' . $rows['reference'] . '</td></tr>';
+            $icon = 'icon/'.$_SESSION['item'].'/'.$rows['reference'].'.jpg';
+
+            echo '<div class="container_icon" id="container_'.$ref.'"><table><tr><td><img class="icon" src="' . $icon . '" /></td></tr>';
+            echo '<tr><td>' .str_replace(['_', '.', ], ' ', $rows['reference']). '</td></tr>';
             echo '<tr><td>';
             echo '<input placeholder="'.(($rows['quantity'] < 0) ? 0 : $rows['quantity']).'" type="number" min="0" max="99"';
-            echo ' id="' . $rows['reference'] . '" name="' . $rows['reference'] . '" onclick="makeSum(this);" onkeyup="makeSum(this);" ';
-            echo 'onchange="switchDivDisplay(this.value, \'container_' . $rows['reference'] . '\')" ';
+            echo ' id="'.$ref.'" name="'.$ref.'" onclick="makeSum(this);" onkeyup="makeSum(this);" ';
+            echo 'onchange="switchDivDisplay(this.value, \'container_'.$ref.'\')" ';
             echo 'onfocus="if(document.getElementById(\'checkvalues\').style.visibility === \'visible\') document.getElementById(\'checkvalues\').style.visibility = \'hidden\';"/>';
-            echo '&nbsp;<span id="span_'.$rows['reference'].'"'.(($rows['quantity'] > 0) ? '>dispo' : 'class="asterisk">*').'</span>';
+            echo '&nbsp;<span id="span_'.$ref.'"'.(($rows['quantity'] > 0) ? '>dispo' : 'class="asterisk">*').'</span>';
             echo '</td></tr>';
             echo '</table></div>';
 
