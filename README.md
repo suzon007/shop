@@ -7,4 +7,4 @@
 - using 2 modules to install with composer: "composer install"
 - using AWS CodeDeploy (+ Github integration) to deploy seamlessly from master
 
-:bulb: **Top tip**: If you upload icons from within Github website blank spaces will be replaced by points
+:bulb: **Top tip**: If you upload icons from within Github website blank spaces will be replaced by dots
