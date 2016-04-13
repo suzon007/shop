@@ -56,7 +56,7 @@ class FileManager implements IC
             //the post key that correspond to items ref
             if(!in_array($k, IC::KEYS_FORM_PROTECTED))
             {
-                $csv .= $k.';'.((empty($v)) ? 0 : $v).PHP_EOL;
+                $csv .= str_replace(['_', '.'], ' ', $k).';'.((empty($v)) ? 0 : $v).PHP_EOL;
             }
 
         endforeach;
@@ -101,19 +101,20 @@ class FileManager implements IC
             {
                 $i++;
                 $iconPath = '../icon/'.$p1_datas_post['item'].'/'.$k.'.jpg';
+                $formatRefName = str_replace(['_', '.'], ' ', $k);
 
                 if($i === 6)
                 {
                     $i = 0;
 
-                    $htmlOutput .= '<td><img src="'.$iconPath.'" style="width: 25px;"></td><td>'.$k.'</td><td><b>'.$v.'</b></td></tr>'.PHP_EOL;
+                    $htmlOutput .= '<td><img src="'.$iconPath.'" style="width: 25px;"></td><td>'.$formatRefName.'</td><td><b>'.$v.'</b></td></tr>'.PHP_EOL;
 
 
                 }elseif($i === 1)
                 {
-                    $htmlOutput .= '<tr><td><img src="'.$iconPath.'" style="width: 25px;"></td><td>'.$k.'</td><td><b>'.$v.'</b></td>'.PHP_EOL;
+                    $htmlOutput .= '<tr><td><img src="'.$iconPath.'" style="width: 25px;"></td><td>'.$formatRefName.'</td><td><b>'.$v.'</b></td>'.PHP_EOL;
 
-                }else $htmlOutput .= '<td><img src="'.$iconPath.'" style="width: 25px;"></td><td>'.$k.'</td><td><b>'.$v.'</b></td>'.PHP_EOL;
+                }else $htmlOutput .= '<td><img src="'.$iconPath.'" style="width: 25px;"></td><td>'.$formatRefName.'</td><td><b>'.$v.'</b></td>'.PHP_EOL;
 
             }
 
