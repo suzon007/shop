@@ -235,7 +235,7 @@ class DatabaseManager implements IC
 
                 mysqli_free_result($result); //don't remove this line
 
-            }else return $this->sqli->error;
+            }//else return $this->sqli->error;
 
         endforeach;
 
