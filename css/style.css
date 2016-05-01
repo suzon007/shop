@@ -97,7 +97,7 @@ p {
 
 
 /*RESPONSIVE ZIS*/
-@media screen and (width: 768px) {
+@media screen and (width: 768px), only screen and (-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi) {
   body {
       font-size: 20px;
   }
