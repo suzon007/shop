@@ -155,7 +155,8 @@ include_once 'translations/label_'.$_SESSION['locale'].'.php';
         $icon = 'icon/'.$_SESSION['item'].'/'.$rows['reference'].'.jpg';
 
         echo '<div class="container_icon" id="container_'.$ref.'"><table><tr><td><img class="icon" src="' . $icon . '" /></td></tr>';
-        echo '<tr><td id="titleOfTamp">' .str_replace(['_', '.', ], ' ', $rows['reference']). '</td></tr>';
+        
+echo '<tr><td id="titleOfTamp" title="'.str_ireplace(['_', '.', ], ' ', $rows['reference']).'">' .str_replace(['_', '.', ], ' ', substr($rows['reference'], 0, 8)). '</td></tr>';
         echo '<tr><td>';
         echo '<input placeholder="'.(($rows['quantity'] < 0) ? 0 : $rows['quantity']).'" type="number" min="0" max="99"';
         echo ' id="'.$ref.'" name="'.$ref.'" onclick="makeSum(this);" onkeyup="makeSum(this);" ';
