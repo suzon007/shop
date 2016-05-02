@@ -32,6 +32,8 @@ include_once 'translations/label_'.$_SESSION['locale'].'.php';
   <link rel="icon" href="img/favicon.ico"/>
   <meta name="description" content="<?php echo $_SESSION['item'] ?>"/>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  <script type="text/javascript" src="js/responsive-tgl.js"></script>
   <script>
   <?php
   //pass PHP consts to JavaScript
@@ -73,7 +75,9 @@ include_once 'translations/label_'.$_SESSION['locale'].'.php';
     <p id="return_from_checkvalues"></p>
   </div>
   <div id="top">
-    <!-- User acc info div -->
+
+
+    <!--========================================= User acc info div========================================= -->
     <div id = "user">
       <?php
       foreach(IC::SHOP_ITEMS_AND_RATES as $k => $v):
@@ -90,42 +94,50 @@ include_once 'translations/label_'.$_SESSION['locale'].'.php';
       <!--<img src="img/logo-tp.png" style="border: none; width: 200px; margin-right: 10px;"/>-->
       <br><a href="login?do=logout"><?php echo LOGOUT ?>(<?php echo $_SESSION['customer_email'] ?>)</a>
     </div>
-    <div id="choice_form">
-      <form style="float: left">
-        <select id="fillAction"
-        onchange="whatNext(this.value);">
-        <option value=""><?php echo CHOOSE ?></option>
-        <option value="all"><?php echo FILL_ALL_WITH_ONE ?></option>
-        <option value="50"><?php echo FILL_50_WITH_1 ?></option>
-        <option value="100"><?php echo FILL_100_WITH_1 ?></option>
-        <option value="25"><?php echo FILL_25_WITH_1 ?></option>
-      </select>
+    <!--=========================================Toggle Button=========================================  -->
+    <button class="tgl-button">&#9776;</button>
+    <!--=========================================CHOICE FORMMMMM=========================================  -->
+
+    <div id="toggle-div">
+      <div id="choice_form">
+        <form style="float: left">
+          <select id="fillAction"
+          onchange="whatNext(this.value);">
+          <option value=""><?php echo CHOOSE ?></option>
+          <option value="all"><?php echo FILL_ALL_WITH_ONE ?></option>
+          <option value="50"><?php echo FILL_50_WITH_1 ?></option>
+          <option value="100"><?php echo FILL_100_WITH_1 ?></option>
+          <option value="25"><?php echo FILL_25_WITH_1 ?></option>
+        </select>
+        <p>
+          <a href="#" onclick="clearAllInputsValues();"><?php echo CLEAR_VALUES ?></a>
+          <br><span class="asterisk">*</span><?php echo ASTERISK_MSG ?>
+        </p>
+      </form>
+    </div>
+    <!--=========================================REMPLIR FORM=========================================  -->
+    <div id="remplir_form" >
+      <input type="text" id="num_items" placeholder="<?php echo DIFF_ITEMS ?>" style="width: 100px;">&nbsp;<input
+      type="text" id="quantity" placeholder="<?php echo Q ?>" style="width: 50px;">
       <p>
-        <a href="#" onclick="clearAllInputsValues();"><?php echo CLEAR_VALUES ?></a>
-        <br><span class="asterisk">*</span><?php echo ASTERISK_MSG ?>
-      </p>
-    </form>
-  </div>
-  <div id="remplir_form" >
-    <input type="text" id="num_items" placeholder="<?php echo DIFF_ITEMS ?>" style="width: 100px;">&nbsp;<input
-    type="text" id="quantity" placeholder="<?php echo Q ?>" style="width: 50px;">
-    <p>
-      <a href="#"
-      onclick="fillXQuantitiesWithXItems(document.getElementById('quantity').value, document.getElementById('num_items').value);"><?php echo FILL ?></a>
-    </p>
-  </div>
-  <?php if(in_array($_SESSION['item'], ['tampoon', 'pitchfix', ])){ ?>
-    <div id="present_div">
-      <h2><?php echo STANDING_UNIT ?></h2>
-      <p id="give_border">
-        <label><?php echo NO ?></label>&nbsp;<input type="radio" value="3" name="standing_unit" checked>
-        <label>27 <?php echo UNITS ?></label>&nbsp;<input type="radio" value="1" name="standing_unit">
-        <label>45 <?php echo UNITS ?></label>&nbsp;<input type="radio" value="2" name="standing_unit">
+        <a href="#"
+        onclick="fillXQuantitiesWithXItems(document.getElementById('quantity').value, document.getElementById('num_items').value);"><?php echo FILL ?></a>
       </p>
     </div>
-    <?php } ?>
-    <div id="infos"><p id="return_from_makeSum" style="margin-bottom: 0;"></p></div>
+    <?php if(in_array($_SESSION['item'], ['tampoon', 'pitchfix', ])){ ?>
+      <!--=========================================PRESENT DIV=========================================  -->
+      <div id="present_div">
+        <h2><?php echo STANDING_UNIT ?></h2>
+        <p id="give_border">
+          <label><?php echo NO ?></label>&nbsp;<input type="radio" value="3" name="standing_unit" checked>
+          <label>27 <?php echo UNITS ?></label>&nbsp;<input type="radio" value="1" name="standing_unit">
+          <label>45 <?php echo UNITS ?></label>&nbsp;<input type="radio" value="2" name="standing_unit">
+        </p>
+      </div>
+      <?php } ?>
+      <div id="infos"><p id="return_from_makeSum" style="margin-bottom: 0;"></p></div>
 
+    </div>
   </div>
   <!-- MAIN DIV for ITEMS -->
   <div id="main">
