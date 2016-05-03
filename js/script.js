@@ -106,12 +106,6 @@ function checkValues()
 
 function processOrder()
 {
-
-    try{
-        var standingUnits = document.getElementsByName('standing_unit');
-
-    }catch(e){ alert(e.toString()); }
-
     var containerSendMailLink = document.getElementById('pForProcessOrder');
     containerSendMailLink.innerHTML = '<img src="img/spinner.gif" style="border: none;" />';
 
@@ -124,15 +118,8 @@ function processOrder()
     oData.append('total', total);
     oData.append('item', item);
 
-    if(standingUnits != null || standingUnits != undefined || standingUnits != 'undefined')
-    {
-        for(var i = 0; i < standingUnits.length; i++)
-        {
-            if(standingUnits[i].checked)
-            {
-                oData.append('standingUnit', standingUnits[i].value);
-            }
-        }
+    if(document.getElementById('standing_unit').value !== 3) {
+        oData.append('standingUnit', document.getElementById('standing_unit').value);
     }
 
     oReq.onload = function(oEvent)
@@ -424,11 +411,16 @@ function whatNext(p1optionValue)
 
             fillAllWith1Q();
 
+        }else if(p1optionValue === 'clearAllInputsValues') {
+
+
+            clearAllInputsValues();
+
         }else{
 
-            fillXQuantitiesWithXItems(1, parseInt(p1optionValue));
-
+                fillXQuantitiesWithXItems(1, parseInt(p1optionValue));
         }
+        
     }
 }
 

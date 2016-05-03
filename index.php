@@ -108,9 +108,9 @@ include_once 'translations/label_'.$_SESSION['locale'].'.php';
           <option value="50"><?php echo FILL_50_WITH_1 ?></option>
           <option value="100"><?php echo FILL_100_WITH_1 ?></option>
           <option value="25"><?php echo FILL_25_WITH_1 ?></option>
+          <option value="clearAllInputsValues"><?php echo CLEAR_VALUES ?></option>
         </select>
         <p>
-          <a href="#" onclick="clearAllInputsValues();"><?php echo CLEAR_VALUES ?></a>
           <br><span class="asterisk">*</span><?php echo ASTERISK_MSG ?>
         </p>
       </form>
@@ -127,12 +127,11 @@ include_once 'translations/label_'.$_SESSION['locale'].'.php';
     <?php if(in_array($_SESSION['item'], ['tampoon', 'pitchfix', ])){ ?>
       <!--=========================================PRESENT DIV=========================================  -->
       <div id="present_div">
-        <h2><?php echo STANDING_UNIT ?></h2>
-        <p id="give_border">
-          <label><?php echo NO ?></label>&nbsp;<input type="radio" value="3" name="standing_unit" checked>
-          <label>27 <?php echo UNITS ?></label>&nbsp;<input type="radio" value="1" name="standing_unit">
-          <label>45 <?php echo UNITS ?></label>&nbsp;<input type="radio" value="2" name="standing_unit">
-        </p>
+          <select name="standing_unit" id="standing_unit">
+            <option value="3"><?php echo STANDING_UNIT ?></option>
+            <option value="1">27 <?php echo UNITS ?></option>
+            <option value="2">45 <?php echo UNITS ?></option>
+          </select>
       </div>
       <?php } ?>
       <div id="infos"><p id="return_from_makeSum" style="margin-bottom: 0;"></p></div>
@@ -155,8 +154,7 @@ include_once 'translations/label_'.$_SESSION['locale'].'.php';
         $icon = 'icon/'.$_SESSION['item'].'/'.$rows['reference'].'.jpg';
 
         echo '<div class="container_icon" id="container_'.$ref.'"><table><tr><td><img class="icon" src="' . $icon . '" /></td></tr>';
-        
-echo '<tr><td id="titleOfTamp" title="'.str_ireplace(['_', '.', ], ' ', $rows['reference']).'">' .str_replace(['_', '.', ], ' ', substr($rows['reference'], 0, 8)). '</td></tr>';
+        echo '<tr><td id="titleOfTamp" title="'.str_ireplace(['_', '.', ], ' ', $rows['reference']).'">' .str_replace(['_', '.', ], ' ', substr($rows['reference'], 0, 8)). '</td></tr>';
         echo '<tr><td>';
         echo '<input placeholder="'.(($rows['quantity'] < 0) ? 0 : $rows['quantity']).'" type="number" min="0" max="99"';
         echo ' id="'.$ref.'" name="'.$ref.'" onclick="makeSum(this);" onkeyup="makeSum(this);" ';
