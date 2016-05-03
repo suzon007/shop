@@ -1,34 +1,188 @@
-*{ margin: 0; padding: 0;}
-
-html, body{
+* {
+    margin: 0;
+    padding: 0;
+}
+html, body {
     width: 100%;
     height: 100%;
 }
+body {
+    font-family: arial, sans-serif;
+    font-size: 12px;
+}
+.icon {
+    max-width: 100px;
+    max-height: 100px;
+    text-align: center;
+}
+#infos {
+    font-size: 18px;
+    display: none;
+    padding: 5px;
+    color: white;
+    width: 150px;
+    height: 80px;
+    /*position: fixed;*/
+    background-color: black;
+    opacity: 0.8;
+    border-radius: 5px;
+    /*left: 80%; top: 10px;*/
+    text-align: center;
+}
+#checkvalues {
+    position: fixed;
+    left: 20%;
+    font-weight: bold;
+    font-size: 18px;
+    visibility: hidden;
+    padding: 15px;
+    color: white;
+    width: 600px;
+    height: 95%;
+    background-color: black;
+    opacity: 0.9;
+    border-radius: 5px;
+    top: 10px;
+    text-align: center;
+}
+#return_from_checkvalues {
+    overflow: auto;
+    height: 90%;
+}
+#btnClose {
+    width: 26px;
+    height: 26px;
+    border-radius: 13px;
+    background-color: white;
+    cursor: pointer;
+    color: black;
+}
+#top {
+    text-align: center;
+    width: 100%;
+}
+a {
+    text-decoration: none;
+    color: cornflowerblue;
+    font-family: arial, sans-serif;
+    font-size: 18px;
+}
+p {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.container_icon {
+    display: inline-block;
+    margin: 15px;
+}
+.bigInput {
+    width: 300px;
+    height: 35px;
+    font-weight: bold;
+    font-size: 25px;
+    border-radius: 7px;
+}
+#top div {
+    float: left;
+    padding: 10px;
+    margin-right: 10px;
+}
+#main {
+    clear: both;
+}
+.asterisk {
+    font-weight: bold;
+    font-size: 18px;
+}
+.tgl-button{
+  display: none;
+}
 
-body{ font-family: arial, sans-serif; font-size: 12px; }
+/*RESPONSIVE ZIS*/
+@media screen and (width: 768px), only screen and (-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi) {
+  body {
+      font-size: 20px;
+      overflow-x: hidden;
+  }
+  /*Responsive MODAL*/
+  #checkvalues {
 
-.icon{ max-width: 100px; max-height: 100px; text-align: center;}
+    }
 
-#infos{ font-size: 18px; display: none; padding: 5px; color: white; width: 150px; height: 80px; /*position: fixed;*/ background-color: black; opacity: 0.8; border-radius: 5px; /*left: 80%; top: 10px;*/ text-align: center; }
+  /*responsive toggle button*/
 
-#checkvalues{ position: fixed; left: 20%; font-weight: bold; font-size: 18px; visibility: hidden; padding: 15px; color: white; width: 600px; height: 95%; background-color: black; opacity: 0.9; border-radius: 5px; top: 10px; text-align: center; }
+  .tgl-button {
+    background-color: #c2271b !important; /* Green */
+    width: 100%;
+    height: 80px;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 40px;
+  }
 
-#return_from_checkvalues{ overflow: auto; height: 90%; }
+/*resposive user authentic info*/
+   #user{
+     width: 100%;
+     /*border-bottom: solid 1px;*/
+     background-color:  #0D1033;
+   }
+/* Dropdown menu*/
+  
+   #choice_form{
+     overflow: hidden;
+     width: 100%;
+     /*border-bottom: solid 1px;*/
+     background-color: #f3aaa5;
+   }
+   #choice_form form {
+    margin-left: 10%;
+   }
+   #fillAction{
+     text-align: center;
+     height: 50px;
+     font-size: 25px;
+  }
+/* Remplir Fform*/
+  #remplir_form{
+    width: 100%;
+    /*border-bottom: solid 1px;*/
+    background-color: #f6c0bc;
+  }
+  #num_items{
+    width: 240px !important;
+    height: 40px;
+    font-size: 18px;
+    border: solid 1px;
+  }
+  #quantity{
+    width: 80px !important;
+    height: 40px;
+    font-size:18px;
+    border: solid 1px;
+  }
+/* PRESENT DIV*/
+  #present_div{
+    width: 100% !important;
+    background-color: #f9d5d2;
+  }
+#give_border label{
+  border: solid 1px;
+}
 
-#btnClose{ width: 26px; height: 26px; border-radius: 13px; background-color: white; cursor: pointer; color: black; }
+/*responsive MAIN DIV*/
+  .icon {
+      width: 250px !important;
+      height: 250px !important;
+  }
+  .container_icon {
+      margin: 40px;
+  }
+  #titleOfTamp{
+    font-size: 25px;
+  }
 
-#top{ text-align: center; width: 100%; }
-
-a{ text-decoration: none; color: cornflowerblue; font-family: arial, sans-serif; font-size: 18px; }
-
-p{ margin-top: 10px; margin-bottom: 10px; }
-
-.container_icon{  display: inline-block; margin: 15px; }
-
-.bigInput{ width: 300px; height: 35px; font-weight: bold; font-size: 25px; border-radius: 7px; }
-
-#top div{ float: left; padding: 10px; margin-right: 10px; }
-
-#main{ clear: both; }
-
-.asterisk{ font-weight: bold; font-size: 18px; }
+}
