@@ -38,6 +38,7 @@ function makeSum(p1_input_number)
         {
             document.getElementById('span_'+p1_input_number.id).innerHTML = '*';
             document.getElementById('span_'+p1_input_number.id).className = 'asterisk';
+            document.getElementById('container_'+p1_input_number.id).style.cssText = styleTampoonContainerOutOfStock;
 
         }else if(parseInt(p1_input_number.value) <= parseInt(p1_input_number.placeholder))
         {
@@ -257,8 +258,12 @@ function fillXQuantitiesWithXItems(p1_which_quantity, p2_differents_items)
                         {
                             document.getElementById(availableTampoons[array_random[prop]]).value = p1_q;
 
-                            if(parseInt(document.getElementById(availableTampoons[array_random[prop]]).placeholder) === 0) {
+                            var itemQuantityInStock = parseInt(document.getElementById(availableTampoons[array_random[prop]]).placeholder);
+
+                            if(itemQuantityInStock === 0 || itemQuantityInStock < p1_q) {
                                 document.getElementById('container_'+availableTampoons[array_random[prop]]).style.cssText = styleTampoonContainerOutOfStock;
+                                document.getElementById('span_'+availableTampoons[array_random[prop]]).innerHTML = '*';
+                                document.getElementById('span_'+availableTampoons[array_random[prop]]).className = 'asterisk';
 
                             }else{
                                 document.getElementById('container_'+availableTampoons[array_random[prop]]).style.cssText = styleTampoonContainer;
