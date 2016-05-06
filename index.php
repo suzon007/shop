@@ -110,19 +110,16 @@ include_once 'translations/label_'.$_SESSION['locale'].'.php';
           <option value="25"><?php echo FILL_25_WITH_1 ?></option>
           <option value="clearAllInputsValues"><?php echo CLEAR_VALUES ?></option>
         </select>
-        <p>
-          <br><span class="asterisk">*</span><?php echo ASTERISK_MSG ?>
-        </p>
       </form>
     </div>
     <!--=========================================REMPLIR FORM=========================================  -->
     <div id="remplir_form" >
       <input type="text" id="num_items" placeholder="<?php echo DIFF_ITEMS ?>" style="width: 100px;">&nbsp;<input
       type="text" id="quantity" placeholder="<?php echo Q ?>" style="width: 50px;">
-      <p>
+      &nbsp;
         <a href="#"
         onclick="fillXQuantitiesWithXItems(document.getElementById('quantity').value, document.getElementById('num_items').value);"><?php echo FILL ?></a>
-      </p>
+
     </div>
     <?php if(in_array($_SESSION['item'], ['tampoon', 'pitchfix', ])){ ?>
       <!--=========================================PRESENT DIV=========================================  -->
@@ -160,7 +157,7 @@ include_once 'translations/label_'.$_SESSION['locale'].'.php';
         echo ' id="'.$ref.'" name="'.$ref.'" onclick="makeSum(this);" onkeyup="makeSum(this);" ';
         echo 'onchange="switchDivDisplay(this.value, \'container_'.$ref.'\')" ';
         echo 'onfocus="if(document.getElementById(\'checkvalues\').style.visibility === \'visible\') document.getElementById(\'checkvalues\').style.visibility = \'hidden\';"/>';
-        echo '&nbsp;<span id="span_'.$ref.'"'.(($rows['quantity'] > 0) ? '>dispo' : 'class="asterisk">*').'</span>';
+        echo '&nbsp;<span id="span_'.$ref.'"'.(($rows['quantity'] > 0) ? '>dispo' : ' title="'.ASTERISK_MSG.'" class="asterisk">*').'</span>';
         echo '</td></tr>';
         echo '</table></div>';
 
