@@ -10,6 +10,7 @@ var locale
 var sum;
 var total;
 var styleTampoonContainer = 'border: 2px solid cornflowerblue; border-radius: 3px; padding: 5px;';
+var styleTampoonContainerOutOfStock = 'border: 2px solid red; border-radius: 3px; padding: 5px;';
 
 function makeSum(p1_input_number)
 {
@@ -25,7 +26,12 @@ function makeSum(p1_input_number)
 
         }else{
 
-            document.getElementById('container_'+p1_input_number.id).style.cssText = styleTampoonContainer;
+            if(parseInt(p1_input_number.placeholder) === 0) {
+                document.getElementById('container_'+p1_input_number.id).style.cssText = styleTampoonContainerOutOfStock;
+
+            }else{
+                document.getElementById('container_'+p1_input_number.id).style.cssText = styleTampoonContainer;
+            }
         }
 
         if(parseInt(p1_input_number.value) > parseInt(p1_input_number.placeholder))
@@ -165,7 +171,12 @@ function fillAllWith1Q()
 
     for(var i = 0; i < inputs.length; i++)
     {
-        document.getElementById('container_'+inputs[i].name).style.cssText = 'border: none;';
+        if(parseInt(inputs[i].placeholder) === 0) {
+            document.getElementById('container_'+inputs[i].name).style.cssText = styleTampoonContainerOutOfStock;
+        }else{
+            document.getElementById('container_'+inputs[i].name).style.cssText = 'border: none;';
+        }
+
         inputs[i].value = 1;
     }
 
@@ -183,7 +194,7 @@ function fill50ValWithXQ(p1_which_quantity)
     for(var i = 0; i < inputs.length; i++)
     {
         document.getElementById('container_'+inputs[i].name).style.cssText = 'border: none;';
-        inputs_name.push(inputs[i].name);
+        inputs_name.push(inputs[i].name); //name & id are the same (cd index.php)
     }
 
     var array_random = array_rand(inputs_name, 50);
@@ -191,7 +202,14 @@ function fill50ValWithXQ(p1_which_quantity)
     for(var prop in array_random)
     {
         document.getElementById(inputs_name[array_random[prop]]).value = p1_which_quantity;
-        document.getElementById('container_'+inputs_name[array_random[prop]]).style.cssText = styleTampoonContainer;
+
+        if(parseInt(document.getElementById(inputs_name).placeholder) === 0) {
+            document.getElementById('container_'+inputs_name[array_random[prop]]).style.cssText = styleTampoonContainerOutOfStock;
+
+        }else{
+            document.getElementById('container_'+inputs_name[array_random[prop]]).style.cssText = styleTampoonContainer;
+        }
+
 
     }
 
@@ -223,7 +241,7 @@ function fillXQuantitiesWithXItems(p1_which_quantity, p2_differents_items)
                     {
                         document.getElementById('container_'+inputs[i].name).style.cssText = 'border: none;';
 
-                        if(inputs[i].max >= p1_q)
+                        if(inputs[i].max >= p1_q) // only for items that has already enough quantity in stock
                         {
                             //console.log(inputs[i].id+' : '+inputs[i].max);
                             availableTampoons.push(inputs[i].name);
@@ -238,7 +256,14 @@ function fillXQuantitiesWithXItems(p1_which_quantity, p2_differents_items)
                         for(var prop in array_random)
                         {
                             document.getElementById(availableTampoons[array_random[prop]]).value = p1_q;
-                            document.getElementById('container_'+availableTampoons[array_random[prop]]).style.cssText = styleTampoonContainer;
+
+                            if(parseInt(document.getElementById(availableTampoons[array_random[prop]]).placeholder) === 0) {
+                                document.getElementById('container_'+availableTampoons[array_random[prop]]).style.cssText = styleTampoonContainerOutOfStock;
+
+                            }else{
+                                document.getElementById('container_'+availableTampoons[array_random[prop]]).style.cssText = styleTampoonContainer;
+
+                            }
                         }
 
                         makeSum();
@@ -289,14 +314,21 @@ function changePassword()
     oReq.send(oData);
 }
 
-function switchDivDisplay(p1_tampoon_q, p2_div_container_id)
+function switchDivDisplay(p1_item_input, p2_div_container_id)
 {
-    if(p1_tampoon_q == 0)
+    if(parseInt(p1_item_input.value) === 0)
     {
         document.getElementById(p2_div_container_id).style.cssText = 'border: none;';
 
     }else{
-        document.getElementById(p2_div_container_id).style.cssText = styleTampoonContainer;
+
+        if(parseInt(p1_item_input.placeholder) === 0) {
+            document.getElementById(p2_div_container_id).style.cssText = styleTampoonContainerOutOfStock;
+
+        }else{
+            document.getElementById(p2_div_container_id).style.cssText = styleTampoonContainer;
+
+        }
     }
 }
 

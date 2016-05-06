@@ -155,7 +155,7 @@ include_once 'translations/label_'.$_SESSION['locale'].'.php';
         echo '<tr><td>';
         echo '<input placeholder="'.(($rows['quantity'] < 0) ? 0 : $rows['quantity']).'" type="number" min="0" max="99"';
         echo ' id="'.$ref.'" name="'.$ref.'" onclick="makeSum(this);" onkeyup="makeSum(this);" ';
-        echo 'onchange="switchDivDisplay(this.value, \'container_'.$ref.'\')" ';
+        echo 'onchange="switchDivDisplay(this, \'container_'.$ref.'\')" ';
         echo 'onfocus="if(document.getElementById(\'checkvalues\').style.visibility === \'visible\') document.getElementById(\'checkvalues\').style.visibility = \'hidden\';"/>';
         echo '&nbsp;<span id="span_'.$ref.'"'.(($rows['quantity'] > 0) ? '>dispo' : ' title="'.ASTERISK_MSG.'" class="asterisk">*').'</span>';
         echo '</td></tr>';
