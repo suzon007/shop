@@ -18,15 +18,24 @@ function makeSum(p1_input_number)
 
     if(func_num_args() > 0) //means that its a client event from input number
     {
+        var itemQuantityAvailable = parseInt(p1_input_number.placeholder);
 
         if(p1_input_number.value == 0 || p1_input_number.value == ''){
 
             p1_input_number.value = '';
             document.getElementById('container_'+p1_input_number.id).style.cssText = 'border: none;';
 
+            if(itemQuantityAvailable === 0) {
+                document.getElementById('span_'+p1_input_number.id).innerHTML = '*';
+                document.getElementById('span_'+p1_input_number.id).className = 'asterisk';
+            }else{
+                document.getElementById('span_'+p1_input_number.id).innerHTML = translations[locale][10];
+                document.getElementById('span_'+p1_input_number.id).className = '';
+            }
+
         }else{
 
-            if(parseInt(p1_input_number.placeholder) === 0) {
+            if(itemQuantityAvailable === 0) {
                 document.getElementById('container_'+p1_input_number.id).style.cssText = styleTampoonContainerOutOfStock;
 
             }else{
@@ -161,6 +170,13 @@ function clearAllInputsValues()
     {
         inputs[i].value = '';
         document.getElementById('container_'+inputs[i].id).style.cssText = 'border: none;';
+
+        //dont forget to set to dispo for item that has at least 1 q available!
+        if(document.getElementById('span_'+inputs[i].id).className) {
+            document.getElementById('span_'+inputs[i].id).className = '';
+            document.getElementById('span_'+inputs[i].id).innerHTML = translations[locale][10];
+
+        }
     }
 
     document.getElementById('infos').style.display = 'none';
@@ -174,6 +190,8 @@ function fillAllWith1Q()
     {
         if(parseInt(inputs[i].placeholder) === 0) {
             document.getElementById('container_'+inputs[i].name).style.cssText = styleTampoonContainerOutOfStock;
+            document.getElementById('span_'+inputs[i].id).className = 'atserisk';
+            document.getElementById('span_'+inputs[i].id).innerHTML = '*';
         }else{
             document.getElementById('container_'+inputs[i].name).style.cssText = 'border: none;';
         }
@@ -242,13 +260,13 @@ function fillXQuantitiesWithXItems(p1_which_quantity, p2_differents_items)
                     {
                         document.getElementById('container_'+inputs[i].name).style.cssText = 'border: none;';
 
-                        if(inputs[i].max >= p1_q) // only for items that has already enough quantity in stock
+                        if(parseInt(inputs[i].placeholder) > 0) // only for available item (at least 1 quantity)
+                        //if(inputs[i].max >= p1_q) // only for items that has already enough quantity in stock
                         {
                             //console.log(inputs[i].id+' : '+inputs[i].max);
                             availableTampoons.push(inputs[i].name);
                         }
                     }
-                    //console.log(availableTampoons.length+' >= '+p2_diff_items);
 
                     if(availableTampoons.length >= p2_diff_items)
                     {
@@ -321,18 +339,32 @@ function changePassword()
 
 function switchDivDisplay(p1_item_input, p2_div_container_id)
 {
-    if(parseInt(p1_item_input.value) === 0)
+    var itemQuantityInStock = parseInt(p1_item_input.placeholder);
+    var itemSelectedValue = parseInt(p1_item_input.value);
+
+    if(isNaN(itemSelectedValue) || itemSelectedValue === 0)
     {
         document.getElementById(p2_div_container_id).style.cssText = 'border: none;';
 
+        if(itemQuantityInStock === 0) {
+            document.getElementById('span_'+p1_item_input.id).innerHTML = '*';
+            document.getElementById('span_'+p1_item_input.id).className = 'asterisk';
+        }else{
+            document.getElementById('span_'+p1_item_input.id).innerHTML = translations[locale][10];;
+            document.getElementById('span_'+p1_item_input.id).className = '';
+        }
+
     }else{
 
-        if(parseInt(p1_item_input.placeholder) === 0) {
+        if(itemQuantityInStock === 0) {
             document.getElementById(p2_div_container_id).style.cssText = styleTampoonContainerOutOfStock;
+            document.getElementById('span_'+p1_item_input.id).innerHTML = '*';
+            document.getElementById('span_'+p1_item_input.id).className = 'asterisk';
 
         }else{
             document.getElementById(p2_div_container_id).style.cssText = styleTampoonContainer;
-
+            document.getElementById('span_'+p1_item_input.id).innerHTML = translations[locale][10];;
+            document.getElementById('span_'+p1_item_input.id).className = '';
         }
     }
 }
